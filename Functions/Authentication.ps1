@@ -74,6 +74,7 @@ function Get-ZPAEnvironmentFromFile
     ZPAhost = public-api.dev.zpath.net
     client_id = MTQ1MjUzOTQzODkzNTUasdjfkaldjsfkajkEwNWItNDVmNi1hYmIyLWQzMzk4YmE0ZmEyYQ==
     client_secret = hfwilhafilhksdfajhfiflwej
+    customer_id = 2734582374820349382
 
     #>
     param(
@@ -97,7 +98,7 @@ function Get-ZPAEnvironmentFromFile
     $environment = ConvertFrom-StringData -StringData (Get-Content -path $FileName -Raw)
 
     # set the environment
-    Set-ZPAEnvironment -ZPAhost $environment.ZPAhost -client_id $environment.client_id -client_secret $environment.client_secret
+    Set-ZPAEnvironment -ZPAhost $environment.ZPAhost -client_id $environment.client_id -client_secret $environment.client_secret -customer_id  $environment.customer_id
 }
 
 function Set-ZPAEnvironment
@@ -124,7 +125,8 @@ function Set-ZPAEnvironment
     param(
         [Parameter(Mandatory=$true)][string]$ZPAhost,
         [Parameter(Mandatory=$true)][string]$client_id,
-        [Parameter(Mandatory=$true)][string]$client_secret
+        [Parameter(Mandatory=$true)][string]$client_secret,
+        [Parameter(Mandatory=$true)][string]$customer_id
     )
 
     $global:ZPAEnvironment = [PSCustomObject]@{
@@ -132,6 +134,7 @@ function Set-ZPAEnvironment
         client_id = $client_id
         client_secret = $client_secret
         token = $token
+        customer_id = $customer_id
     }
 }
 
